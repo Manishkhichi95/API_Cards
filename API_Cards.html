@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #value {
+        width:20%;
+        background-color: rgb(220, 220, 30);
+        margin: 0 auto;
+        border-radius: 30px;
+        display:flex; 
+        flex-direction: column; 
+        align-items: center;
+        padding:10px;
+      }
+    </style>
+  </head>
+  <body>
+        <p id="value"></p>
+    <script>
+      function getdata() {
+        fetch(`https://reqres.in/api/users?page=2`,
+         { method: "GET" })
+          .then((res) => res.json())
+          .then((val) => {
+            console.log(val)
+            val.data.forEach((abc) => {
+              const nan = document.createElement("span");
+                 nan.innerHTML='id: '+abc.id
+                 nan.style.marginTop='40px'
+              document.getElementById("value").appendChild(nan);
+
+              const nod = document.createElement("span");
+               nod.innerHTML='Email: '+abc.email
+              document.getElementById("value").appendChild(nod);
+
+              const no = document.createElement("span");
+                no.innerHTML=" First Name: " + abc.first_name
+              document.getElementById("value").appendChild(no);
+
+              const n = document.createElement("span");
+               n.innerHTML=  " Last Name: " + abc.last_name  
+              document.getElementById("value").appendChild(n);
+
+             
+              const ode = document.createElement("img");
+              ode.src = abc.avatar;
+              document.getElementById("value").appendChild(ode);});});}
+      getdata()
+    </script>
+  </body>
+</html>
